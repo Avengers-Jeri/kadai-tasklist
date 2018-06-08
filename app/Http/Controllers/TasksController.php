@@ -23,12 +23,12 @@ class TasksController extends Controller
             'tasks' => $tasks,
         ]);
     }
-
+    
     /**
      * Show the form for creating a new resource.
-     *
      * @return \Illuminate\Http\Response
      */
+     
     public function create()
     {
         $task = new Task;
