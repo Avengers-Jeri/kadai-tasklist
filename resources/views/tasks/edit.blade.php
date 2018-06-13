@@ -1,8 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-   @if (Auth::check())
-   
+ @if (Auth::id() == $task->user_id)
     <h1>id: {{ $task->id }} のタスク編集ページ</h1>
 
     <div class="row">
@@ -23,14 +22,8 @@
             {!! Form::close() !!}
         </div>
     </div>
-
-     @else
-        <div class="center jumbotron">
-            <div class="text-center">
-                <h1>Welcome to Tasklist</h1>
-                {!! link_to_route('signup.get', 'Sign up now!', null, ['class' => 'btn btn-lg btn-primary']) !!}
-            </div>
-        </div>
-    @endif
+ @else
+        <p>You Cannot Edit Other's Task List</p>
+ @endif
 
 @endsection

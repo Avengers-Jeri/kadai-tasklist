@@ -17,11 +17,14 @@ class TasksController extends Controller
      */
     public function index()
     {
-        $tasks = Task::all();
+        if (\Auth::check()) {
+            $user = \Auth::user();
+            $tasks = $user->tasks()->orderBy('id')->paginate(10);
 
-        return view('tasks.index', [
-            'tasks' => $tasks,
-        ]);
+            return view('tasks.index', ['tasks'=>$tasks]);
+        }else {
+            return view('welcome');
+        }
     }
     
     /**
